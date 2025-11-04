@@ -12,8 +12,9 @@ const app = new Hono();
 // Define allowed origins
 // Important! No trailing slash
 const allowedOrigins = new Set([
-  "http://localhost:5173",
-  "https://<your-frontend-domain>.<tld>",
+  "http://localhost:5173", // Local development
+  "http://localhost:8787/", // Local development
+  "https://blazenote-frontend.cf-testing.workers.dev/", // Workers Route
 ]);
 
 // https://hono.dev/docs/middleware/builtin/cors
