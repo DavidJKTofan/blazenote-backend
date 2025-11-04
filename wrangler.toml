@@ -8,7 +8,7 @@ compatibility_flags = [ "nodejs_compat" ]
 [[d1_databases]]
 binding = "DB"
 database_name = "blazenote"
-database_id = "<your-database-id>"
+database_id = "60c9350b-21cb-4d58-b7da-b399ba542947"
 migrations_dir = "./migrations"
 remote = true
 
@@ -21,3 +21,8 @@ remote = true
 # Enable observability logging
 [observability.logs]
 enabled = true
+
+# Custom domain configuration
+[[routes]]
+pattern = "blazenote-backend.cf-testing.com"
+custom_domain = true
