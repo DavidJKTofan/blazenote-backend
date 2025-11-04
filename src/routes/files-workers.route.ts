@@ -70,6 +70,24 @@ filesWorkers.get("/:key", async (ctx: ContextExtended) => {
   }
 });
 
+filesWorkers.get("/list", async (ctx: ContextExtended) => {
+  const bucket = ctx.env.R2_BUCKET;
+
+  try {
+    // Get list of all files in bucket
+    const objects = await bucket.list();
+    const keys = objects.objects.map((object) => object.key);
+
+    return ctx.json({ success: true, keys });
+  } catch (error) {
+    console.error("Error listing objects:", error);
+    return ctx.json({
+      success: false,
+      message: "Error listing objects",
+    });
+  }
+});
+
 filesWorkers.delete("/:key", async (ctx: ContextExtended) => {
   const filename = ctx.req.param("key");
 
@@ -93,24 +111,6 @@ filesWorkers.delete("/:key", async (ctx: ContextExtended) => {
     return ctx.json({
       success: false,
       message: `Error deleting file ${filename}`,
-    });
-  }
-});
-
-filesWorkers.get("/list", async (ctx: ContextExtended) => {
-  const bucket = ctx.env.R2_BUCKET;
-
-  try {
-    // Get list of all files in bucket
-    const objects = await bucket.list();
-    const keys = objects.objects.map((object) => object.key);
-
-    return ctx.json({ success: true, keys });
-  } catch (error) {
-    console.error("Error listing objects:", error);
-    return ctx.json({
-      success: false,
-      message: "Error listing objects",
     });
   }
 });

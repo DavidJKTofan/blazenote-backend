@@ -55,7 +55,7 @@ notes.put("/:id", async (ctx: ContextExtended) => {
             SET (title, description) = (?1, ?2)
             WHERE id = ?3`
       )
-      .bind(id, title, description) // security: bind parameters to prevent SQL injection
+      .bind(title, description, id) // security: bind parameters to prevent SQL injection
       .run();
 
     return response.success
