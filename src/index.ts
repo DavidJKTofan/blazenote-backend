@@ -13,8 +13,8 @@ const app = new Hono();
 // Important! No trailing slash
 const allowedOrigins = new Set([
   "http://localhost:5173", // Local development
-  "http://localhost:8787/", // Local development
-  "https://blazenote-frontend.cf-testing.workers.dev/", // Workers Route
+  "http://localhost:8787", // Local development
+  "https://blazenote-frontend.cf-testing.workers.dev", // Workers Route
   "https://blazenote-frontend.cf-testing.com", // Custom Domain
 ]);
 
